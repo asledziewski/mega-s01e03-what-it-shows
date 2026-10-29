@@ -1,0 +1,60 @@
+---
+layout: runbook
+title: '#4471 · Report split and engineering outcomes'
+owner: 'Codex, harness for Adrian Śledziewski'
+status: reviewed
+reviewed: '2026-10-29'
+signature: 'v1.eyJzdWIiOiIzMzIzIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTMzMDY2MjYsImV4cCI6MTc5MzM5MzAyNn0.2HFxd0Q-Cwzrs3vdZKXjmLrglc2XfwB46SoiD-t8Cks'
+---
+
+<script>
+  import InvestigationSummary from '#lib/kb/InvestigationSummary.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import DedupeExplorer from '#lib/kb/DedupeExplorer.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+## What was split
+
+The original #4471 summary said one issue and one fix. Tenant configuration and the rendered components show separate parser and booking-form hint mechanisms. Subjects and browser intake tags cannot establish a common cause. The report counts below use the supplied code and tenant directory, deduplicated by report ID.
+
+<InvestigationSummary />
+
+<CauseTable ticket={4471} />
+
+## Engineering outcomes: update after the first submission
+
+The course's engineering update says #4471 closed on **2026-10-05**:
+
+| Problem | Challenge ticket | Outcome | Closure reason |
+| --- | --- | --- | --- |
+| Shared month-first parser | [Parser issue](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/1) | **Fixed** — `fix(dates): parse dd/mm for eu locales` | completed |
+| booking-v3 hint disagrees with tenant date reader | [Hint issue](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/2) | **Won't fix** — booking-v3 form retired | not planned |
+
+Retirement is not a hint correction. Keep the original count and evidence; do not describe both tickets as fixed. These outcomes come from the course update, rather than tests against a production application. The five exceptional timing reports remain unresolved evidence; the update does not prove their mechanism.
+
+## What the desk was doing
+
+<QueueTimeline ticket={4471} />
+
+Received and merged dates measure different events. The July merge spike is backlog processing, not the beginning of a sudden July incident. Reports continue after that event. A fall in merge activity is not evidence of recovery.
+
+## Current triage
+
+[Decision 0002](/kb/decisions/0002-dedupe-by-cause) replaces [decision 0001](/kb/decisions/0001-dedupe-by-subject), which is preserved unchanged as history. The [active triage page](/kb/triage/dedupe) and [incident summary](/kb/incidents/4471) now link the two tickets.
+
+Read the body, look up the tenant's locale and booking-form version, and record the channel before merging. For day-first tenants, app/email and booking-v2 map to the parser; booking-v3 form reports map to the hint mismatch. Confirm the body agrees with that route. Browser locale and intake labels are guesses. Unknown tenants and one-day or timing anomalies need investigation instead of automatic merging.
+
+The same subject can hide different causes, and different subjects can describe the same cause. Count unique report IDs and retain merge history. For new reports after the engineering update, check the deployed version and input path: a retired form or a fixed parser cannot be assumed to explain a fresh report.
+
+<DedupeExplorer />
+
+## Review limits and next actions
+
+The exported report data ends on 2026-10-04; the course update supplies the later closure outcomes. Do not infer later report volume from that export. The shared layout computes age from the reviewed date, and the KB index exposes stale pages. Re-read the running tables when data changes.
+
+The exceptional report checklist above requires original input, booking ID, timezone, timestamps and event history. Investigate it before claiming all date failures are explained. Verification should check parsing and invite generation independently from the form hint contract. Refiling and production validation require desk access that this export does not give.
+
+<RenderStamp {signature} />
+

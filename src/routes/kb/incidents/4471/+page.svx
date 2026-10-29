@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · parser and booking-form hint problems'
 owner: support desk
-status: split
+status: closed
 reviewed: '2026-10-29'
 ---
 
@@ -16,8 +16,7 @@ reviewed: '2026-10-29'
 The desk merged different mechanisms under one ticket. The [signed review and replacement decision](/kb/decisions/0002-dedupe-by-cause) separates the [shared parser](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/1) from the [booking-v3 hint](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/2). Those challenge tickets record the analysis and KB handoff; their closure does not establish that production fixes shipped.
 
 <Callout>
-There are separate parser and hint problems, plus unresolved report evidence.
-Use the current cause-based triage rule for new arrivals. A queued fix is not a verified resolution.
+Engineering update, 2026-10-05: parser fixed (parse dd/mm for eu locales); hint will not be fixed because booking-v3 was retired. Parser ticket: completed. Hint ticket: not planned. Exceptional timing evidence remains unresolved. See the [signed outcome review](/kb/incidents/4471-review).
 </Callout>
 
 ## What was merged
