@@ -2,7 +2,7 @@
 layout: runbook
 title: '0002 · Split #4471 and triage by cause'
 owner: 'Codex, harness for Adrian Śledziewski'
-status: proposed
+status: accepted
 reviewed: '2026-10-29'
 signature: 'Codex, harness for Adrian Śledziewski · S01E03 · 2026-10-29'
 ---
@@ -17,9 +17,9 @@ signature: 'Codex, harness for Adrian Śledziewski · S01E03 · 2026-10-29'
 
 ## Decision and scope
 
-Replace subject-only merging for date reports with evidence of the same cause. This record proposes replacing [decision 0001](/kb/decisions/0001-dedupe-by-subject); the accepted original remains unchanged as history. The old [triage rule](/kb/triage/dedupe) still describes the desk's current process until the desk accepts this replacement. Do not silently treat this proposal as deployed.
+Replace subject-only merging for date reports with evidence of the same cause. Adopted in this challenge's KB after Adrian reviewed the page. This record replaces [decision 0001](/kb/decisions/0001-dedupe-by-subject); the accepted original remains unchanged as history. The [active triage rule](/kb/triage/dedupe) now uses this decision. This is a KB change, not a claim of production deployment.
 
-The [incident page](/kb/incidents/4471) says one issue and one queued fix. Its own computed views contradict that summary. Split the parser and booking-form hint work into separate engineering tickets. Keep a linked investigation checklist for reports whose bodies do not fit the computed classification.
+The old incident summary said one issue and one queued fix. Its own computed views contradicted that summary. The corrected [incident page](/kb/incidents/4471) links the [parser ticket](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/1) and [hint ticket](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/2). Keep the investigation checklist below for reports whose bodies do not fit the computed classification.
 
 ## Counts from the export
 
@@ -49,10 +49,10 @@ The same tenant can have different causes across channels; the same form channel
 
 ## Migration and verification
 
-Once the desk accepts this decision, replace the live triage instructions, link both engineering tickets from #4471, and route new reports using the new rule immediately. Refile existing reports with an auditable ID-to-ticket mapping; preserve the original merge history. Update the incident summary to show both problems and the unresolved evidence. Do not rewrite accepted decision 0001.
+The active triage instructions and incident summary in this KB are updated and link both tickets. Use the new rule for incoming reports while historical reports are reviewed. The ticket bodies retain an auditable ID-to-ticket mapping and the data retains original merge history. Refiling in a production ticket system remains a desk action; the export does not provide that access. Accepted decision 0001 is preserved unchanged.
 
 For the parser fix, reproduce a day-first input such as 07/04/2026 and verify 7 April survives parsing and invite generation, rather than becoming 4 July. For the hint fix, verify booking-v3 displays the tenant's actual accepted order and saves the displayed date consistently. Verify both paths independently; one fix is not evidence for the other. Investigate the exceptional reports before calling the incident resolved.
 
-The export was made on 2026-10-04. This review does not establish what happened after that date. The KB index and shared layout compute staleness: the old rule's review date is historical evidence, not proof its advice is still sound. Re-read the computed views whenever the data changes, and give this decision a fresh review when the desk accepts it.
+The export was made on 2026-10-04. This review does not establish what happened after that date. The KB index and shared layout compute staleness: the old rule's review date is historical evidence, not proof its advice is still sound. Re-read the computed views whenever the data changes. A later accepted change must be a new decision record rather than rewriting this one.
 
 <RenderStamp {signature} />

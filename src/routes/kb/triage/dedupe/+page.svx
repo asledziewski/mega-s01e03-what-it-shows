@@ -3,7 +3,7 @@ layout: runbook
 title: 'Triage: duplicate reports'
 owner: support desk
 status: accepted
-reviewed: 2024-06-11
+reviewed: '2026-10-29'
 ---
 
 <script>
@@ -16,16 +16,16 @@ and merge every duplicate into it, so engineering sees one thread with a count.
 
 ## The rule
 
-A report is a duplicate when its **subject line matches** the subject of an open ticket
-([decision 0001](/kb/decisions/0001-dedupe-by-subject)):
+A report is a duplicate only when the evidence supports the **same cause**, under
+[decision 0002](/kb/decisions/0002-dedupe-by-cause), which replaces subject-only matching.
 
-1. lowercase the subject and strip punctuation;
-2. look for an open ticket with the same subject;
-3. found one: merge the report into it. None: open a new ticket.
+1. Read the body and look up the tenant locale, booking-form version, and report channel.
+2. Confirm the mechanism: day-first app/email or booking-v2 parser swaps go to the [parser ticket](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/1); booking-v3 hint/reader disagreement goes to the [hint ticket](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/2).
+3. Merge only when evidence agrees with that cause. Search by subject, but never decide by subject alone. Count each report ID once.
 
 <Callout>
-Matching on subject is fast and needs no reading. During an incident that matters more than
-anything else.
+The same subject can describe different bugs. Different subjects can describe the same bug.
+Tenant data determines the classifier's route; browser locale and intake tags can be wrong.
 </Callout>
 
 ## Try it
@@ -34,4 +34,6 @@ anything else.
 
 ## When you are unsure
 
-Merge. Splitting a ticket later is cheaper than two engineers chasing the same bug.
+Keep the report separate and request the missing input, booking ID, timezone and timestamps.
+One-day and timing anomalies need investigation even when the classifier returns parser.
+Do not merge unknown tenants on subject alone. See the signed decision's unresolved-report checklist.

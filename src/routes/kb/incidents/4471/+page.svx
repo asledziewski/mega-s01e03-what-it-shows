@@ -1,28 +1,28 @@
 ---
 layout: runbook
-title: '#4471 · dates parse mm/dd in eu locales'
+title: '#4471 · parser and booking-form hint problems'
 owner: support desk
-status: known
-reviewed: 2026-09-30
+status: split
+reviewed: '2026-10-29'
 ---
 
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
   import Callout from '#lib/kb/Callout.svelte';
+  import InvestigationSummary from '#lib/kb/InvestigationSummary.svelte';
 </script>
 
-Since April, people have told us their bookings land on the wrong day: a month flipped. By
-4 October the desk had **412 reports**.
-
-**Merged as one issue.** The parser reads dates month first, and our tenants write the day
-first. The fix is queued.
+The desk merged different mechanisms under one ticket. The [signed review and replacement decision](/kb/decisions/0002-dedupe-by-cause) separates the [shared parser](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/1) from the [booking-v3 hint](https://github.com/asledziewski/mega-s01e03-what-it-shows/issues/2). Those challenge tickets record the analysis and KB handoff; their closure does not establish that production fixes shipped.
 
 <Callout>
-Known. One issue, one fix queued.
+There are separate parser and hint problems, plus unresolved report evidence.
+Use the current cause-based triage rule for new arrivals. A queued fix is not a verified resolution.
 </Callout>
 
 ## What was merged
+
+<InvestigationSummary />
 
 <CauseTable ticket={4471} />
 
@@ -32,5 +32,6 @@ Known. One issue, one fix queued.
 
 ## Lessons
 
-- A big ticket is mostly one bug reported many times. Merge early, count once.
-- Write the page while the queue is still in your head.
+- Read bodies and tenant configuration before merging. Follow [current triage](/kb/triage/dedupe).
+- Deduplicate by report ID, preserve merge history, and verify each mechanism independently.
+- Received dates describe arrivals; merge dates describe desk processing. Keep those measures separate.
